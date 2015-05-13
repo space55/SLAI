@@ -10,6 +10,7 @@ public class serverProtocol
 	{
 		String input = sentInput;
 		String output = null;
+		String F_input = input.substring(1);
 
 		try
 		{
@@ -25,12 +26,17 @@ public class serverProtocol
 		if (input.charAt(0) == '1')
 		{
 			Logger.write("Creating a row (with true)");
-			createRow(input, 1, true, getConnection(), input);
+			createRow(F_input, 1, true, getConnection(), input);
 		}
-		else
+		else if (input.charAt(0) = '0')
 		{
 			Logger.write("Creating a row (with false)");
 			createRow(input, 1, false, getConnection(), input);
+		}
+		else if (input.charAt(0) == '2')
+		{
+			String query = "select yesno_validations from yesno_answers where yesno_id = \"" + F_input + "\"";
+			int ret = executeCommandInt(query, "yesno_id", getConnection());
 		}
 		String query = "select yesno_id from yesno_answers where yesno_id = \"" + input + "\"";
 		String result = executeCommandString(query, "yesno_id", getConnection());
