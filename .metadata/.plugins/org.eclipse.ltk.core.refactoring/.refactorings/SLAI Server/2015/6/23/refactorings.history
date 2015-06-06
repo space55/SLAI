@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;Logger.java&apos; to &apos;SLAI/src/SLAI&apos;&#x0D;&#x0A;- Original project: &apos;SLAI Server&apos;&#x0D;&#x0A;- Destination element: &apos;SLAI/src/SLAI&apos;&#x0D;&#x0A;- Original element: &apos;Logger.java&apos;" description="Copy compilation unit" destination="=SLAI/src&lt;SLAI" element1="/src&lt;{Logger.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1433556815027" units="1" version="1.0"/>
+</session>

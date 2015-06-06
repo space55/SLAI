@@ -1,0 +1,4 @@
+INDEX VERSION 1.126+S:\Archives\Documents\SLAI\.metadata\.plugins\org.eclipse.jdt.core
+1986386343.index
+2107344463.index
+4227533716.index

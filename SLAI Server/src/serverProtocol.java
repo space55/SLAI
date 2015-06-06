@@ -6,12 +6,10 @@ import java.sql.Statement;
 
 public class serverProtocol
 {
-	public String processInput(String sentInput) throws SQLException
+	public String processInput(String input) throws SQLException
 	{
-		String input = sentInput;
 		String output = null;
 		String F_input = input.substring(1);
-
 		try
 		{
 			Logger.write("Loading driver...");
@@ -22,13 +20,15 @@ public class serverProtocol
 		{
 			throw new RuntimeException("Cannot find the driver in the classpath!", e);
 		}
-
-		if (input.charAt(0) == '1')
+		
+		
+		
+		/*if (input.charAt(0) == '1')
 		{
 			Logger.write("Creating a row (with true)");
 			createRow(F_input, 1, true, getConnection(), input);
 		}
-		else if (input.charAt(0) = '0')
+		else if (input.charAt(0) == '0')
 		{
 			Logger.write("Creating a row (with false)");
 			createRow(input, 1, false, getConnection(), input);
@@ -51,7 +51,7 @@ public class serverProtocol
 			int val = executeCommandInt(findCommand, "yesno_validations", getConnection());
 			String valAdd = "insert into yesno_answers yesno_validations value " + (val + 1) + ";";
 			executeUpdate(valAdd, getConnection());
-		}
+		}*/
 		input = "null";
 		return output;
 	}
@@ -126,9 +126,7 @@ public class serverProtocol
 		Logger.write("createRow invoked");
 
 		Statement stmt = null;
-		String findCommand = "select yesno_validations from yesno_answers where yesno_id = \"" + input + "\";";
-		int val = executeCommandInt(findCommand, "yesno_validations", con);
-		String command = "insert into yesno_answers (yesno_id, yesno_validations, yesno_tf) values (" + id + ", " + (validations + val) + ");";
+		String command = "insert into yesno_answers (yesno_id, yesno_validations, yesno_tf) values (" + id + ", " + validations + ");";
 		try
 		{
 			stmt = con.createStatement();
@@ -150,10 +148,10 @@ public class serverProtocol
 		}
 	}
 
-	public static int executeCommandInt(String command, String wantedResult, Connection con) throws SQLException
+	public static String executeCommand(String id, String wantedResult, Connection con) throws SQLException
 	{
-		int result = 0;
-		Logger.write("executeCommandInt invoked");
+		String result = "";
+		Logger.write("executeCommand invoked");
 
 		Statement stmt = null;
 		try
@@ -162,13 +160,13 @@ public class serverProtocol
 			Logger.write("stmt initialized & declared");
 			ResultSet rs;
 			Logger.write("rs declared");
-			rs = stmt.executeQuery(command);
+			rs = stmt.executeQuery("SELECT " + wantedResult + " FROM yesno_answers WHERE yesno_id = "+ id +";");
 			Logger.write("Query executed");
 			while (rs.next())
 			{
 
 				Logger.write("Getting " + wantedResult);
-				result = rs.getInt(wantedResult);
+				result = "" + rs.getInt(wantedResult);
 				Logger.write("Creating rs, wR, & r strings");
 				String rsL = "rs: " + rs;
 				String wRL = "wR: " + wantedResult;
@@ -181,140 +179,6 @@ public class serverProtocol
 		catch (SQLException e)
 		{
 			Logger.write("Exception caused by sending an update");
-		}
-		finally
-		{
-			if (stmt != null)
-			{
-				stmt.close();
-				Logger.write("Closing connection");
-			}
-		}
-		return result;
-	}
-
-	public static String executeCommandString(String command, String wantedResult, Connection con) throws SQLException
-	{
-		String result = "";
-		Logger.write("executeCommandString invoked");
-
-		Statement stmt = null;
-		try
-		{
-			stmt = con.createStatement();
-			Logger.write("stmt initialized & declared");
-			ResultSet rs;
-			Logger.write("rs declared");
-			rs = stmt.executeQuery(command);
-			Logger.write("Query executed");
-			while (rs.next())
-			{
-
-				Logger.write("Getting " + wantedResult);
-				result = rs.getString(wantedResult);
-				Logger.write("Creating rs, wR, & r strings");
-				String rsL = "rs: " + rs;
-				String wRL = "wR: " + wantedResult;
-				String rL = "rL: " + result;
-				Logger.write(rsL);
-				Logger.write(wRL);
-				Logger.write(rL);
-			}
-		}
-		catch (SQLException e)
-		{
-			Logger.write("Exception caused by sending a query");
-		}
-		finally
-		{
-			if (stmt != null)
-			{
-				stmt.close();
-				Logger.write("Closing connection");
-			}
-		}
-		return result;
-	}
-
-	public static boolean executeCommandBoolVInt(String command, String wantedResult, Connection con) throws SQLException
-	{
-		boolean result = false;
-		int result1 = 0;
-		Logger.write("executeCommandBoolVInt invoked");
-
-		Statement stmt = null;
-		try
-		{
-			stmt = con.createStatement();
-			Logger.write("stmt initialized & declared");
-			ResultSet rs;
-			Logger.write("rs declared");
-			rs = stmt.executeQuery(command);
-			Logger.write("Query executed");
-			while (rs.next())
-			{
-
-				Logger.write("Getting " + wantedResult);
-				result1 = rs.getInt(wantedResult);
-				if (result1 == 1)
-				{
-					result = true;
-				}
-				Logger.write("Creating rs, wR, & r strings");
-				String rsL = "rs: " + rs;
-				String wRL = "wR: " + wantedResult;
-				String rL = "rL: " + result1;
-				Logger.write(rsL);
-				Logger.write(wRL);
-				Logger.write(rL);
-			}
-		}
-		catch (SQLException e)
-		{
-			Logger.write("Exception caused by sending a query");
-		}
-		finally
-		{
-			if (stmt != null)
-			{
-				stmt.close();
-				Logger.write("Closing connection");
-			}
-		}
-		return result;
-	}
-
-	public static boolean executeCommandBool(String command, String wantedResult, Connection con) throws SQLException
-	{
-		boolean result = false;
-		Logger.write("executeCommandBool invoked");
-
-		Statement stmt = null;
-		try
-		{
-			stmt = con.createStatement();
-			Logger.write("stmt initialized & declared");
-			ResultSet rs;
-			Logger.write("rs declared");
-			rs = stmt.executeQuery(command);
-			Logger.write("Query executed");
-			while (rs.next())
-			{
-
-				Logger.write("Getting " + wantedResult);
-				result = rs.getBoolean(wantedResult);
-				Logger.write("Creating rs, wR, & r strings");
-				String rsL = "rs: " + rs;
-				String wRL = "wR: " + wantedResult;
-				String rL = "rL: " + result;
-				Logger.write(rsL);
-				Logger.write(wRL);
-				Logger.write(rL);
-			}
-		}
-		catch (SQLException e)
-		{
-			Logger.write("Exception caused by sending a query");
 		}
 		finally
 		{

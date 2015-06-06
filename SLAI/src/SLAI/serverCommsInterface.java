@@ -32,26 +32,54 @@ public class serverCommsInterface
 			String fromServer;
 			String fromUser;
 
-			if (word.equals("3"))
-			{
-				out.println(word);
-			}
+			
+			out.println(word);
+			
+			//Protocol: (YN)\(VAL)\(TEXT)
+			//Example: Y\0003\Sure
 
 			while ((fromServer = in.readLine()) != null)
 			{
-				if (fromServer.equals("1"))
+				Logger.write("FromServer: " + fromServer);
+				int val = 0;
+				val += ((fromServer.charAt(2)-48)*1000);
+				val += ((fromServer.charAt(3)-48)*100);
+				val += ((fromServer.charAt(4)-48)*10);
+				val += ((fromServer.charAt(5)-48)*1);
+				if (fromServer.charAt(1) == 'Y')
 				{
-					ret = 1;
+					if (start.experimental)
+					{
+						ret = 1;
+					}
+					
+					else if (val < 15)
+					{
+						ret = 2;
+					}
+					
+					else
+					{
+						ret = 1;
+					}
 				}
 
-				if (fromServer.equals("2"))
+				if (fromServer.charAt(0) == 'N')
 				{
-					ret = 2;
-				}
-
-				if (word != "1" || word != "2" || word != "3")
-				{
-					out.println(word);
+					if (start.experimental)
+					{
+						ret = 0;
+					}
+					
+					else if (val < 15)
+					{
+						ret = 2;
+					}
+					
+					else
+					{
+						ret = 0;
+					}
 				}
 			}
 		}
