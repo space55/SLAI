@@ -30,7 +30,6 @@ public class serverThread extends Thread
 
 			while ((inputLine = in.readLine()) != null)
 			{
-				Logger.write("From Client: " + inputLine);
 				outputLine = sP.processInput(inputLine);
 				out.println(outputLine);
 				if (outputLine.equals("Bye"))
