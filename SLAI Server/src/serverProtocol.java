@@ -6,10 +6,15 @@ import java.sql.Statement;
 
 public class serverProtocol
 {
-	public String processInput(String input) throws SQLException
+	public String processInput(String dataInput) throws SQLException
 	{
+		if (dataInput.equalsIgnoreCase(""))
+		{
+			return "";
+		}
+		char type = dataInput.charAt(0);
+		String input = dataInput.substring(1);
 		String output = null;
-		String F_input = input.substring(1);
 		try
 		{
 			Logger.write("Loading driver...");
@@ -21,81 +26,31 @@ public class serverProtocol
 			throw new RuntimeException("Cannot find the driver in the classpath!", e);
 		}
 		
-		
-		
-		/*if (input.charAt(0) == '1')
+		if (type == '*')
 		{
-			Logger.write("Creating a row (with true)");
-			createRow(F_input, 1, true, getConnection(), input);
+			createRow(input, 1, true, getConnection());
 		}
-		else if (input.charAt(0) == '0')
+		else if (type == '^')
 		{
-			Logger.write("Creating a row (with false)");
-			createRow(input, 1, false, getConnection(), input);
+			createRow(input, 1, false, getConnection());
 		}
-		else if (input.charAt(0) == '2')
+		else if (type == '@')
 		{
-			String query = "select yesno_validations from yesno_answers where yesno_id = \"" + F_input + "\"";
-			int ret = executeCommandInt(query, "yesno_id", getConnection());
+			String data = findData(input, getConnection());
+			
+			if (data.equals("#"))
+			{
+				output = "%";
+			}
+			else
+			{
+				output = data + "\\" + input;
+			}
 		}
-		String query = "select yesno_id from yesno_answers where yesno_id = \"" + input + "\"";
-		String result = executeCommandString(query, "yesno_id", getConnection());
-		if (result.equalsIgnoreCase(""))
-		{
-			Logger.write("No row with id " + input + " found; returning find ans");
-			output = "2";
-		}
-		else
-		{
-			String findCommand = "select yesno_validations from yesno_answers where yesno_id = \"" + input + "\";";
-			int val = executeCommandInt(findCommand, "yesno_validations", getConnection());
-			String valAdd = "insert into yesno_answers yesno_validations value " + (val + 1) + ";";
-			executeUpdate(valAdd, getConnection());
-		}*/
-		input = "null";
 		return output;
 	}
 
-	public static void viewTable(Connection con, String dbName) throws SQLException
-	{
-		Logger.write("viewTable invoked");
-
-		Statement stmt = null;
-		String query = "select yesno_validations from yesno_answers where yesno_id = \"yes\";";
-		try
-		{
-			stmt = con.createStatement();
-			Logger.write("stmt initialized & declared");
-			ResultSet rs;
-			Logger.write("rs declared");
-			rs = stmt.executeQuery(query);
-			Logger.write("Query executed");
-			while (rs.next())
-			{
-				Logger.write("Getting validations");
-				int yesnoValidations = rs.getInt("yesno_validations");
-				Logger.write("Creating rs & ynV strings");
-				String rsL = "rs: " + rs;
-				String ynVL = "ynV: " + yesnoValidations;
-				Logger.write(rsL);
-				Logger.write(ynVL);
-			}
-		}
-		catch (SQLException e)
-		{
-			Logger.write("Exception caused by sending a query");
-		}
-		finally
-		{
-			if (stmt != null)
-			{
-				stmt.close();
-				Logger.write("Closing connection");
-			}
-		}
-	}
-
-	public static void executeUpdate(String command, Connection con) throws SQLException
+	public static void executeUpdate(String id, int yn, Connection con) throws SQLException
 	{
 		Logger.write("executeUpdate invoked");
 
@@ -104,7 +59,17 @@ public class serverProtocol
 		{
 			stmt = con.createStatement();
 			Logger.write("stmt initialized & declared");
-			stmt.executeUpdate(command);
+			String val = findData(id, con, "yesno_validations");
+			int valida = 1;
+			try
+			{
+				valida = Integer.parseInt(val);
+			}
+			catch (Exception e)
+			{
+				Logger.write("yesno_validations with id " + id + " had bad data.");
+			}
+			stmt.executeUpdate("update yesno_answers set yesno_validations=" + valida + " where yesno_id=" + id + ";");
 			Logger.write("Update executed");
 		}
 		catch (SQLException e)
@@ -121,12 +86,17 @@ public class serverProtocol
 		}
 	}
 
-	public static void createRow(String id, int validations, boolean tf, Connection con, String input) throws SQLException
+	public static void createRow(String id, int validations, boolean tf, Connection con) throws SQLException
 	{
 		Logger.write("createRow invoked");
 
 		Statement stmt = null;
-		String command = "insert into yesno_answers (yesno_id, yesno_validations, yesno_tf) values (" + id + ", " + validations + ");";
+		int yn = 1;
+		if (!tf)
+		{
+			yn = 0;
+		}
+		String command = "insert into yesno_answers (yesno_id, yesno_validations, yesno_tf) values (" + id + ", " + validations + ", " + yn + ");";
 		try
 		{
 			stmt = con.createStatement();
@@ -147,8 +117,18 @@ public class serverProtocol
 			}
 		}
 	}
+	
+	public static String findData(String id, Connection con) throws SQLException
+	{
+		String ret = findData(id, con, "yesno_validations") + "\\" + findData(id, con, "yesno_tf");
+		if (ret.equals(null))
+		{
+			ret = "#";
+		}
+		return ret;
+	}
 
-	public static String executeCommand(String id, String wantedResult, Connection con) throws SQLException
+	public static String findData(String id, Connection con, String wantedResult) throws SQLException
 	{
 		String result = "";
 		Logger.write("executeCommand invoked");

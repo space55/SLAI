@@ -176,13 +176,13 @@ public class start
 			String messup = in.nextLine();
 			if (messup.equalsIgnoreCase("Y"))
 			{
-				type = serverCommsInterface.sCI("1" + input);
+				type = serverCommsInterface.sCI("*" + input);
 				gameYes = true;
 				Logger.write("answer set to yes & added to DB");
 			}
 			if (messup.equalsIgnoreCase("N"))
 			{
-				type = serverCommsInterface.sCI("0" + input);
+				type = serverCommsInterface.sCI("^" + input);
 				gameYes = false;
 				Logger.write("answer set to no & added to DB");
 			}

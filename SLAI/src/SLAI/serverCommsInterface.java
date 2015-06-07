@@ -36,16 +36,14 @@ public class serverCommsInterface
 			out.println(word);
 			
 			//Protocol: (YN)\(VAL)\(TEXT)
-			//Example: Y\0003\Sure
+			//Example: Y\3\Sure
 
 			while ((fromServer = in.readLine()) != null)
 			{
 				Logger.write("FromServer: " + fromServer);
 				int val = 0;
-				val += ((fromServer.charAt(2)-48)*1000);
-				val += ((fromServer.charAt(3)-48)*100);
-				val += ((fromServer.charAt(4)-48)*10);
-				val += ((fromServer.charAt(5)-48)*1);
+				int valStart = fromServer.indexOf("\\", 2);
+				val = Integer.parseInt(fromServer.substring(2, valStart));
 				if (fromServer.charAt(1) == 'Y')
 				{
 					if (start.experimental)
