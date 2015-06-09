@@ -18,8 +18,6 @@ public class Logger
 		BufferedWriter bout = null;
 		try {
 			bout = new BufferedWriter(new FileWriter(time() + "-log.txt"));
-			bout.write("Starting logfile at " + time());
-			bout.flush();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
