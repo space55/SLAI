@@ -32,7 +32,9 @@ public class serverThread extends Thread
 			{
 				Logger.write("From Client: " + inputLine);
 				outputLine = sP.processInput(inputLine);
+				Logger.write("Sending: " + outputLine);
 				out.println(outputLine);
+				Logger.write("Message sent");
 			}
 			out.close();
 			in.close();

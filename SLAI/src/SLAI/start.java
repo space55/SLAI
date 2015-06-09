@@ -166,7 +166,7 @@ public class start
 		}
 		if (!gameYes)
 		{
-			type = serverCommsInterface.sCI(input);
+			type = serverCommsInterface.sCI(input, 2);
 		}
 		if (type == 2)
 		{
@@ -176,13 +176,13 @@ public class start
 			String messup = in.nextLine();
 			if (messup.equalsIgnoreCase("Y"))
 			{
-				type = serverCommsInterface.sCI("*" + input);
+				type = serverCommsInterface.sCI("*" + input, 1);
 				gameYes = true;
 				Logger.write("answer set to yes & added to DB");
 			}
 			if (messup.equalsIgnoreCase("N"))
 			{
-				type = serverCommsInterface.sCI("^" + input);
+				type = serverCommsInterface.sCI("^" + input, 0);
 				gameYes = false;
 				Logger.write("answer set to no & added to DB");
 			}

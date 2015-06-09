@@ -11,7 +11,7 @@ public class serverCommsInterface
 {
 	private static final int port = 1635;
 
-	public static int sCI(String word) throws IOException
+	public static int sCI(String word, int newText) throws IOException
 	{
 		int ret = 0;
 
@@ -32,8 +32,23 @@ public class serverCommsInterface
 			String fromServer;
 			String fromUser;
 
+			String servOut = "";
+			if (newText == 1)
+			{
+				servOut += "*";
+			}
+			else if (newText == 0)
+			{
+				servOut += "^";
+			}
+			else if (newText == 2)
+			{
+				servOut += "@";
+			}
 			
-			out.println(word);
+			servOut += word;
+			
+			out.println(servOut);
 			
 			//Protocol: (YN)\(VAL)\(TEXT)
 			//Example: Y\3\Sure
@@ -51,7 +66,7 @@ public class serverCommsInterface
 				{
 					Logger.write("Response is invalid");
 				}
-				if (fromServer.charAt(1) == 'Y')
+				if (fromServer.charAt(0) == 'Y')
 				{
 					if (start.experimental)
 					{

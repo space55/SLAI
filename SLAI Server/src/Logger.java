@@ -31,7 +31,7 @@ public class Logger
 	{
 		Calendar cal = Calendar.getInstance();
 		cal.getTime();
-		SimpleDateFormat sdf = new SimpleDateFormat("HH-mm-ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("HH mm ss");
 		String time = sdf.format(cal.getTime());
 		time = time + "." + System.currentTimeMillis() % 1000;
 		return time;

@@ -38,13 +38,13 @@ public class serverProtocol
 		{
 			String data = findData(input, getConnection());
 			
-			if (data.equals("#"))
+			if (data.indexOf("#") != -1)
 			{
 				output = "%";
 			}
 			else
 			{
-				output = data + "\\" + input;
+				output = data + (char) 92 + input;
 			}
 		}
 		Logger.write("Output: " + output);
@@ -70,12 +70,14 @@ public class serverProtocol
 			{
 				Logger.write("yesno_validations with id " + id + " had bad data.");
 			}
-			stmt.executeUpdate("update yesno_answers set yesno_validations=" + valida + " where yesno_id=" + id + ";");
+			String update = "UPDATE yesno_answers SET yesno_validations=\'" + valida + "\' WHERE yesno_id=\'" + id + "\';";
+			Logger.write("Update command: " + update);
+			stmt.execute(update);
 			Logger.write("Update executed");
 		}
 		catch (SQLException e)
 		{
-			Logger.write("Exception caused by sending a query");
+			Logger.write("Exception caused by sending a command (executeUpdate)");
 		}
 		finally
 		{
@@ -97,17 +99,18 @@ public class serverProtocol
 		{
 			yn = 0;
 		}
-		String command = "insert into yesno_answers (yesno_id, yesno_validations, yesno_tf) values (" + id + ", " + validations + ", " + yn + ");";
+		String command = "INSERT INTO yesno_answers (yesno_id, yesno_validations, yesno_tf) VALUES (" + id + ", " + validations + ", " + yn + ");";
 		try
 		{
 			stmt = con.createStatement();
 			Logger.write("stmt initialized & declared");
+			Logger.write("Command: " + command);
 			stmt.executeUpdate(command);
 			Logger.write("Update executed");
 		}
 		catch (SQLException e)
 		{
-			Logger.write("Exception caused by sending a query");
+			Logger.write("Exception caused by sending a command (createRow)");
 		}
 		finally
 		{
@@ -121,11 +124,10 @@ public class serverProtocol
 	
 	public static String findData(String id, Connection con) throws SQLException
 	{
-		String ret = findData(id, con, "yesno_validations") + "\\" + findData(id, con, "yesno_tf");
-		if (ret.equals(null))
-		{
-			ret = "#";
-		}
+		String validations = findData(id, con, "yesno_validations");
+		String tf = findData(id, con, "yesno_tf");
+		char sep = 92;
+		String ret = tf + sep + validations;
 		return ret;
 	}
 
@@ -141,7 +143,9 @@ public class serverProtocol
 			Logger.write("stmt initialized & declared");
 			ResultSet rs;
 			Logger.write("rs declared");
-			rs = stmt.executeQuery("SELECT " + wantedResult + " FROM yesno_answers WHERE yesno_id = "+ id +";");
+			String query = "SELECT " + wantedResult + " FROM yesno_answers WHERE yesno_id = \'"+ id +"\';";
+			Logger.write("Query: " + query);
+			rs = stmt.executeQuery(query);
 			Logger.write("Query executed");
 			while (rs.next())
 			{
@@ -159,7 +163,7 @@ public class serverProtocol
 		}
 		catch (SQLException e)
 		{
-			Logger.write("Exception caused by sending an update");
+			Logger.write("Exception caused by sending a command (findData)");
 		}
 		finally
 		{
@@ -169,12 +173,17 @@ public class serverProtocol
 				Logger.write("Closing connection");
 			}
 		}
+		if (result.equals(null) || result.equals(""))
+		{
+			result = "#";
+		}
+		Logger.write("Result of findData(): " + result);
 		return result;
 	}
 
 	public static Connection getConnection() throws SQLException
 	{
-
+		Logger.write("Getting connection");
 		Connection conn = null;
 		String user = "ai-yna";
 		String password = "a1Ynafwd$";
