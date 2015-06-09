@@ -14,7 +14,7 @@ public class serverProtocol
 		}
 		char type = dataInput.charAt(0);
 		String input = dataInput.substring(1);
-		String output = null;
+		String output = "";
 		try
 		{
 			Logger.write("Loading driver...");
@@ -47,6 +47,7 @@ public class serverProtocol
 				output = data + "\\" + input;
 			}
 		}
+		Logger.write("Output: " + output);
 		return output;
 	}
 

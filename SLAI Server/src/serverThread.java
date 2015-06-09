@@ -33,8 +33,6 @@ public class serverThread extends Thread
 				Logger.write("From Client: " + inputLine);
 				outputLine = sP.processInput(inputLine);
 				out.println(outputLine);
-				if (outputLine.equals("Bye"))
-					break;
 			}
 			out.close();
 			in.close();

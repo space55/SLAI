@@ -25,7 +25,7 @@ public class start
 				verbose = true;
 			}
 
-			if (args[argscounter].equalsIgnoreCase("tLogger.write"))
+			if (args[argscounter].equalsIgnoreCase("tlog"))
 			{
 				timestamp = true;
 			}

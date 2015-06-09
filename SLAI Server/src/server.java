@@ -21,6 +21,11 @@ public class server
 			{
 				// Logger.timestamp = true;
 			}
+			
+			if (args[argscounter].equalsIgnoreCase("logf"))
+			{
+				// Logger.logfile = true;
+			}
 		}
 		Logger.write("Completed args reading");
 

@@ -43,7 +43,14 @@ public class serverCommsInterface
 				Logger.write("FromServer: " + fromServer);
 				int val = 0;
 				int valStart = fromServer.indexOf("\\", 2);
-				val = Integer.parseInt(fromServer.substring(2, valStart));
+				try
+				{
+					val = Integer.parseInt(fromServer.substring(2, valStart));
+				}
+				catch (Exception e)
+				{
+					Logger.write("Response is invalid");
+				}
 				if (fromServer.charAt(1) == 'Y')
 				{
 					if (start.experimental)
