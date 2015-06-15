@@ -13,7 +13,7 @@ public class Logger
 	public static boolean timestamp = true;
 	public static boolean logfile = true;
 	
-	static PrintWriter out = new PrintWriter(define(), true);
+	static PrintWriter out = new PrintWriter(define());
 	
 	public static BufferedWriter define()
 	{
