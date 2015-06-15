@@ -45,19 +45,30 @@ public class serverCommsInterface
 			{
 				servOut += "@";
 			}
-			
+
 			servOut += word;
-			
+
 			out.println(servOut);
-			
+
 			//Protocol: (YN)\(VAL)\(TEXT)
 			//Example: Y\3\Sure
-
-			while ((fromServer = in.readLine()) != null)
+			fromServer = in.readLine();
+			//while ((fromServer = in.readLine()) != null)
+			//{
+			Logger.write("FromServer: " + fromServer);
+			if (fromServer.equals("%"))
 			{
-				Logger.write("FromServer: " + fromServer);
+				ret = 2;
+			}
+			else if (fromServer.equals("$"))
+			{
+				ret = 4;
+				Logger.write("Update completed");
+			}
+			else
+			{
 				int val = 0;
-				int valStart = fromServer.indexOf("\\", 2);
+				int valStart = fromServer.indexOf(92, 2);
 				try
 				{
 					val = Integer.parseInt(fromServer.substring(2, valStart));
@@ -72,12 +83,12 @@ public class serverCommsInterface
 					{
 						ret = 1;
 					}
-					
+
 					else if (val < 15)
 					{
 						ret = 2;
 					}
-					
+
 					else
 					{
 						ret = 1;
@@ -90,18 +101,19 @@ public class serverCommsInterface
 					{
 						ret = 0;
 					}
-					
+
 					else if (val < 15)
 					{
 						ret = 2;
 					}
-					
+
 					else
 					{
 						ret = 0;
 					}
 				}
 			}
+			//}
 		}
 		catch (UnknownHostException e)
 		{

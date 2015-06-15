@@ -1,0 +1,223 @@
+package SLAI;
+
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Scanner;
+
+public class start
+{
+
+	static ArrayList yes = new ArrayList();
+	static ArrayList no = new ArrayList();
+
+	static boolean verbose;
+	static boolean timestamp;
+	static boolean experimental;
+
+	public static void main(String[] args) throws IOException
+	{
+		for (int argscounter = 0; argscounter < args.length; argscounter++)
+		{
+			if (args[argscounter].equalsIgnoreCase("v"))
+			{
+				verbose = true;
+			}
+
+			if (args[argscounter].equalsIgnoreCase("tlog"))
+			{
+				timestamp = true;
+			}
+
+			if (args[argscounter].equalsIgnoreCase("exp"))
+			{
+				experimental = true;
+			}
+		}
+		
+		Logger.init(verbose, timestamp);
+
+		Logger.write("Verbose mode Initialized");
+		Logger.write("Timestamps Initialized");
+
+		Scanner in = new Scanner(System.in);
+
+		System.out.println("Would you like to play a game?");
+		String game = in.nextLine();
+		game.toLowerCase();
+
+		yesNoQuestion(game, in);
+
+		System.out.println("What would you like to play?");
+		String pickGameInput = in.nextLine();
+		checkIfQuit(pickGameInput);
+
+		boolean allFalse = true;
+
+		boolean pongBool = checkGame("pong", pickGameInput);
+
+		String pacManNames[] =
+		{ "pacman", "pac man", "packman", "pack man", };
+
+		boolean pacManBool = false;
+		for (int counter = 0; counter < pacManNames.length; counter++)
+		{
+			pacManBool = checkGame(pacManNames[counter], pickGameInput);
+		}
+
+		boolean breakoutBool = checkGame("breakout", pickGameInput);
+
+		if (pongBool)
+		{
+			allFalse = false;
+			Logger.write("pongBool true; going to play pong");
+			pong();
+		}
+		else if (pacManBool)
+		{
+			allFalse = false;
+			Logger.write("pacManBool true; going to play PacMan");
+			pacMan();
+		}
+		else if (breakoutBool)
+		{
+			allFalse = false;
+			Logger.write("breakoutBool true; going to play breakout");
+			breakout();
+		}
+
+		if (allFalse)
+		{
+			Logger.write("allFalse true; invalid input");
+			System.out.println("Sorry, but I didn't quite understand what you meant to say. Perhaps you wanted to just chat?");
+		}
+	}
+
+	public static void answerNo(boolean answer)
+	{
+		Logger.write("Checking if answer should cause quit");
+		if (!answer)
+		{
+			System.out.println("All right, see you later!");
+			Logger.write("Answer causes quit");
+			System.exit(1000);
+		}
+		Logger.write("Answer not causing quit");
+	}
+
+	public static boolean checkGame(String gameName, String input)
+	{
+		Logger.write("Starting checkGame");
+		boolean gameRunFinal = true;
+		for (int counter = 0; counter < input.length(); counter++)
+		{
+			if (input.charAt(counter) == gameName.charAt(counter))
+			{
+				boolean gameRun[] = new boolean[gameName.length()];
+				for (int counter2 = 0; counter2 < gameName.length(); counter2++)
+				{
+					if (input.charAt(counter2 + counter) == gameName.charAt(counter2))
+					{
+						gameRun[counter] = true;
+					}
+				}
+				for (int counter2 = 0; counter < gameName.length(); counter2++)
+				{
+					if (!gameRun[counter2])
+					{
+						gameRunFinal = false;
+					}
+				}
+			}
+		}
+		Logger.write("Completed checkGame");
+		return gameRunFinal;
+	}
+
+	public static void pong()
+	{
+		System.out.println("A bit dissappointing, huh?");
+		System.exit(1000);
+	}
+
+	public static void pacMan()
+	{
+		System.out.println("A bit dissappointing, huh?");
+		System.exit(1000);
+	}
+
+	public static void breakout()
+	{
+		System.out.println("A bit dissappointing, huh?");
+		System.exit(1000);
+	}
+
+	public static void yesNoQuestion(String input, Scanner in) throws IOException
+	{
+		//0=false, 1=true, 2=ask, 3=invalid
+		Logger.write("Starting yesNoQuestion");
+		boolean gameYes = false;
+		int type = 0;
+		if (input.charAt(0) == '1' || input.charAt(0) == '0' || input.charAt(0) == '#' || input.charAt(0) == '\"' || input.charAt(0) == '\\')
+		{
+			System.out.println("Answer uses protected characters. Assuming you meant yes.");
+			gameYes = true;
+		}
+		if (!gameYes)
+		{
+			type = serverCommsInterface.sCI(input, 2);
+			Logger.write("Type: " + type);
+		}
+		if (type == 2)
+		{
+			Logger.write("(yesNoQuestion) server=2");
+			System.out.println("My apoLogger.writeies, but I didn't understand your response. Would your response count as a \"Yes\" answer, a \"No\" answer, or a mess up?");
+			System.out.println("Please answer with \"Y\" for \"Yes\", \"N\" for \"No\", or hit enter if it was a mess up.");
+			String messup = in.nextLine();
+			if (messup.equalsIgnoreCase("Y"))
+			{
+				type = serverCommsInterface.sCI(input, 1);
+				gameYes = true;
+				Logger.write("answer set to yes & added to DB");
+			}
+			if (messup.equalsIgnoreCase("N"))
+			{
+				type = serverCommsInterface.sCI(input, 0);
+				gameYes = false;
+				Logger.write("answer set to no & added to DB");
+			}
+			else
+			{
+				Logger.write("SERVER IS BROKEN, FIX IT BEFORE IT EXPLODES");
+			}
+		}
+		else if (type == 1)
+		{
+			gameYes = true;
+		}
+		else if (type == 3)
+		{
+			Logger.write("Invalid input; assuming yes");
+			gameYes = true;
+		}
+		answerNo(gameYes);
+		Logger.write("Completed yesNoQuestion");
+	}
+
+	public static String time()
+	{
+		Calendar cal = Calendar.getInstance();
+		cal.getTime();
+		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+		return sdf.format(cal.getTime());
+	}
+
+	public static void checkIfQuit(String input)
+	{
+		if (input.equalsIgnoreCase("exit") || input.equalsIgnoreCase("quit") || input.equalsIgnoreCase("close"))
+		{
+			answerNo(true);
+		}
+	}
+}

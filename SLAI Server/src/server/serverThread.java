@@ -1,0 +1,48 @@
+package server;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.sql.SQLException;
+
+public class serverThread extends Thread
+{
+	private Socket socket = null;
+
+	public serverThread(Socket socket)
+	{
+		super("MultiServerThread");
+		this.socket = socket;
+	}
+
+	public void run()
+	{
+		try
+		{
+			PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+			BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
+			String inputLine;
+			String outputLine;
+			serverProtocol sP = new serverProtocol();
+
+			while ((inputLine = in.readLine()) != null)
+			{
+				Logger.write("From Client: " + inputLine);
+				outputLine = sP.processInput(inputLine);
+				Logger.write("Sending: " + outputLine);
+				out.println(outputLine);
+				Logger.write("Message sent");
+			}
+			out.close();
+			in.close();
+			socket.close();
+		}
+		catch (IOException | SQLException e)
+		{
+			e.printStackTrace();
+		}
+	}
+}

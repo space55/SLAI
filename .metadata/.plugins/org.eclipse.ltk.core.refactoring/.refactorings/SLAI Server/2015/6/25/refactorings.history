@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move 4 elements to &apos;SLAI Server/src/server&apos;&#x0D;&#x0A;- Original project: &apos;SLAI Server&apos;&#x0D;&#x0A;- Destination element: &apos;SLAI Server/src/server&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     Logger.java&#x0D;&#x0A;     serverThread.java&#x0D;&#x0A;     serverProtocol.java&#x0D;&#x0A;     server.java&#x0D;&#x0A;- Update references to refactored element" description="Move compilation units" destination="/src&lt;server" element1="/src&lt;{Logger.java" element2="/src&lt;{serverThread.java" element3="/src&lt;{serverProtocol.java" element4="/src&lt;{server.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1434394197914" units="4" version="1.0"/>
+</session>
