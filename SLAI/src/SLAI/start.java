@@ -12,10 +12,10 @@ public class start
 	static ArrayList yes = new ArrayList();
 	static ArrayList no = new ArrayList();
 
-	static boolean verbose;
-	static boolean timestamp;
-	static boolean experimental;
-	static boolean logfile;
+	static boolean verbose = false;
+	static boolean timestamp = true;
+	static boolean experimental = false;
+	static boolean logfile = true;
 
 	public static void main(String[] args) throws IOException
 	{
@@ -28,7 +28,7 @@ public class start
 
 			if (args[argscounter].equalsIgnoreCase("tlog"))
 			{
-				timestamp = true;
+				timestamp = false;
 			}
 
 			if (args[argscounter].equalsIgnoreCase("exp"))
@@ -38,7 +38,7 @@ public class start
 			
 			if (args[argscounter].equalsIgnoreCase("logf"))
 			{
-				logfile = true;
+				logfile = false;
 			}
 		}
 		
@@ -115,30 +115,13 @@ public class start
 	public static boolean checkGame(String gameName, String input)
 	{
 		Logger.write("Starting checkGame");
-		boolean gameRunFinal = true;
-		for (int counter = 0; counter < input.length(); counter++)
+		boolean gameRun = false;
+		if (input.indexOf(gameName) != -1)
 		{
-			if (input.charAt(counter) == gameName.charAt(counter))
-			{
-				boolean gameRun[] = new boolean[gameName.length()];
-				for (int counter2 = 0; counter2 < gameName.length(); counter2++)
-				{
-					if (input.charAt(counter2 + counter) == gameName.charAt(counter2))
-					{
-						gameRun[counter] = true;
-					}
-				}
-				for (int counter2 = 0; counter < gameName.length(); counter2++)
-				{
-					if (!gameRun[counter2])
-					{
-						gameRunFinal = false;
-					}
-				}
-			}
+			gameRun = true;
 		}
 		Logger.write("Completed checkGame");
-		return gameRunFinal;
+		return gameRun;
 	}
 
 	public static void pong()
@@ -161,8 +144,9 @@ public class start
 
 	public static void yesNoQuestion(String input, Scanner in) throws IOException
 	{
-		//0=false, 1=true, 2=ask, 3=invalid
+		//0=false, 1=true, 2=ask, 3=invalid, 4=completed
 		Logger.write("Starting yesNoQuestion");
+		input.toLowerCase();
 		boolean gameYes = false;
 		int type = 0;
 		if (input.charAt(0) == '1' || input.charAt(0) == '0' || input.charAt(0) == '#' || input.charAt(0) == '\"' || input.charAt(0) == '\\')

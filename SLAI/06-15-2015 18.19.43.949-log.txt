@@ -1,0 +1,12 @@
+Starting logfile at 18:19:43.949[06-15-2015 18:19:43.949] Verbose mode Initialized
+[06-15-2015 18:19:43.950] Timestamps Initialized
+[06-15-2015 18:19:45.494] Starting yesNoQuestion
+[06-15-2015 18:19:45.723] FromServer: %
+[06-15-2015 18:19:45.723] Type: 2
+[06-15-2015 18:19:45.724] (yesNoQuestion) server=2
+[06-15-2015 18:19:46.814] FromServer: $
+[06-15-2015 18:19:46.815] Update completed
+[06-15-2015 18:19:46.815] answer set to yes & added to DB
+[06-15-2015 18:19:46.815] Checking if answer should cause quit
+[06-15-2015 18:19:46.816] Answer not causing quit
+[06-15-2015 18:19:46.816] Completed yesNoQuestion

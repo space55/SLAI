@@ -1,0 +1,33 @@
+Starting logfile at 18:14:18.79[06-15-2015 18:14:18.79] Completed args reading
+[06-15-2015 18:14:21.792] From Client: @Yes
+[06-15-2015 18:14:21.792] Loading driver...
+[06-15-2015 18:14:21.908] Driver loaded!
+[06-15-2015 18:14:21.909] Getting connection
+[06-15-2015 18:14:22.94] Connected to database
+[06-15-2015 18:14:22.94] executeCommand invoked
+[06-15-2015 18:14:22.94] stmt initialized & declared
+[06-15-2015 18:14:22.94] rs declared
+[06-15-2015 18:14:22.95] Query: SELECT yesno_validations FROM yesno_answers WHERE yesno_id = 'Yes';
+[06-15-2015 18:14:22.97] Query executed
+[06-15-2015 18:14:22.97] Getting yesno_validations
+[06-15-2015 18:14:22.98] Creating rs, wR, & r strings
+[06-15-2015 18:14:22.98] rs: com.mysql.jdbc.JDBC4ResultSet@5f47acc1
+[06-15-2015 18:14:22.98] wR: yesno_validations
+[06-15-2015 18:14:22.98] rL: 10
+[06-15-2015 18:14:22.99] Closing connection
+[06-15-2015 18:14:22.99] Result of findData(): 10
+[06-15-2015 18:14:22.99] executeCommand invoked
+[06-15-2015 18:14:22.99] stmt initialized & declared
+[06-15-2015 18:14:22.99] rs declared
+[06-15-2015 18:14:22.100] Query: SELECT yesno_tf FROM yesno_answers WHERE yesno_id = 'Yes';
+[06-15-2015 18:14:22.100] Query executed
+[06-15-2015 18:14:22.100] Getting yesno_tf
+[06-15-2015 18:14:22.101] Creating rs, wR, & r strings
+[06-15-2015 18:14:22.101] rs: com.mysql.jdbc.JDBC4ResultSet@692d0be8
+[06-15-2015 18:14:22.101] wR: yesno_tf
+[06-15-2015 18:14:22.102] rL: 1
+[06-15-2015 18:14:22.102] Closing connection
+[06-15-2015 18:14:22.102] Result of findData(): 1
+[06-15-2015 18:14:22.102] Output: 1\10\Yes
+[06-15-2015 18:14:22.102] Sending: 1\10\Yes
+[06-15-2015 18:14:22.103] Message sent

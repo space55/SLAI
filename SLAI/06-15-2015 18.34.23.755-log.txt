@@ -1,0 +1,2 @@
+Starting logfile at 18:34:23.755[06-15-2015 18:34:23.756] Verbose mode Initialized
+[06-15-2015 18:34:23.756] Timestamps Initialized

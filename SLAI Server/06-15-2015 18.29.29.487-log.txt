@@ -1,0 +1,40 @@
+Starting logfile at 18:29:29.487[06-15-2015 18:29:29.488] Completed args reading
+[06-15-2015 18:29:33.269] From Client: @Sure
+[06-15-2015 18:29:33.269] Loading driver...
+[06-15-2015 18:29:33.331] Driver loaded!
+[06-15-2015 18:29:33.331] Getting connection
+[06-15-2015 18:29:33.474] Connected to database
+[06-15-2015 18:29:33.474] executeCommand invoked
+[06-15-2015 18:29:33.474] stmt initialized & declared
+[06-15-2015 18:29:33.474] rs declared
+[06-15-2015 18:29:33.475] Query: SELECT yesno_validations FROM yesno_answers WHERE yesno_id = 'Sure';
+[06-15-2015 18:29:33.476] Query executed
+[06-15-2015 18:29:33.477] Closing connection
+[06-15-2015 18:29:33.477] Result of findData(): #
+[06-15-2015 18:29:33.477] executeCommand invoked
+[06-15-2015 18:29:33.477] stmt initialized & declared
+[06-15-2015 18:29:33.478] rs declared
+[06-15-2015 18:29:33.478] Query: SELECT yesno_tf FROM yesno_answers WHERE yesno_id = 'Sure';
+[06-15-2015 18:29:33.478] Query executed
+[06-15-2015 18:29:33.478] Closing connection
+[06-15-2015 18:29:33.479] Result of findData(): #
+[06-15-2015 18:29:33.479] Output: %
+[06-15-2015 18:29:33.479] Sending: %
+[06-15-2015 18:29:33.479] Message sent
+[06-15-2015 18:29:33.480] Closing connections
+[06-15-2015 18:29:33.480] Connections closed
+[06-15-2015 18:29:35.767] From Client: *Sure
+[06-15-2015 18:29:35.767] Loading driver...
+[06-15-2015 18:29:35.767] Driver loaded!
+[06-15-2015 18:29:35.767] Getting connection
+[06-15-2015 18:29:35.773] Connected to database
+[06-15-2015 18:29:35.773] createRow invoked
+[06-15-2015 18:29:35.773] stmt initialized & declared
+[06-15-2015 18:29:35.773] Command: INSERT INTO yesno_answers VALUES ('Sure', '1', '1');
+[06-15-2015 18:29:35.805] Exception caused by sending a command (createRow)
+[06-15-2015 18:29:35.805] Closing connection
+[06-15-2015 18:29:35.805] Output: $
+[06-15-2015 18:29:35.805] Sending: $
+[06-15-2015 18:29:35.805] Message sent
+[06-15-2015 18:29:35.806] Closing connections
+[06-15-2015 18:29:35.806] Connections closed

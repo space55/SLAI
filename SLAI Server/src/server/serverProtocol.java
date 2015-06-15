@@ -49,13 +49,19 @@ public class serverProtocol
 			else
 			{
 				output = data + (char) 92 + input;
+				executeUpdate(input, getConnection());
 			}
 		}
 		Logger.write("Output: " + output);
 		return output;
 	}
+	
+	public static void executeUpdate(String id, Connection con) throws SQLException
+	{
+		executeUpdate(id, con, 1);
+	}
 
-	public static void executeUpdate(String id, int yn, Connection con) throws SQLException
+	public static void executeUpdate(String id, Connection con, int yn) throws SQLException
 	{
 		Logger.write("executeUpdate invoked");
 
@@ -69,15 +75,19 @@ public class serverProtocol
 			try
 			{
 				valida = Integer.parseInt(val);
+				valida += yn;
 			}
 			catch (Exception e)
 			{
 				Logger.write("yesno_validations with id " + id + " had bad data.");
 			}
-			String update = "UPDATE yesno_answers SET yesno_validations=\'" + valida + "\' WHERE yesno_id=\'" + id + "\';";
-			Logger.write("Update command: " + update);
-			stmt.execute(update);
-			Logger.write("Update executed");
+			if (valida % 1 == 0)
+			{
+				String update = "UPDATE yesno_answers SET yesno_validations=\'" + valida + "\' WHERE yesno_id=\'" + id + "\';";
+				Logger.write("Update command: " + update);
+				stmt.execute(update);
+				Logger.write("Update executed");
+			}
 		}
 		catch (SQLException e)
 		{
@@ -103,7 +113,7 @@ public class serverProtocol
 		{
 			yn = 0;
 		}
-		String command = "INSERT INTO yesno_answers (yesno_id, yesno_validations, yesno_tf) VALUES (" + id + ", " + validations + ", " + yn + ");";
+		String command = "INSERT INTO yesno_answers VALUES (\'" + id + "\', " + validations + ", " + yn + ");";
 		try
 		{
 			stmt = con.createStatement();

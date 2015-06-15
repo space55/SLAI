@@ -1,0 +1,7 @@
+Starting logfile at 18:17:41.127[06-15-2015 18:17:41.127] Verbose mode Initialized
+[06-15-2015 18:17:41.127] Timestamps Initialized
+[06-15-2015 18:17:42.955] Starting yesNoQuestion
+[06-15-2015 18:17:42.978] FromServer: 1\10\Yes
+[06-15-2015 18:17:42.978] Type: 0
+[06-15-2015 18:17:42.979] Checking if answer should cause quit
+[06-15-2015 18:17:42.979] Answer causes quit

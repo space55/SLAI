@@ -36,9 +36,11 @@ public class serverThread extends Thread
 				out.println(outputLine);
 				Logger.write("Message sent");
 			}
+			Logger.write("Closing connections");
 			out.close();
 			in.close();
 			socket.close();
+			Logger.write("Connections closed");
 		}
 		catch (IOException | SQLException e)
 		{

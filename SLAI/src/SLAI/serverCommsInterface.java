@@ -77,7 +77,7 @@ public class serverCommsInterface
 				{
 					Logger.write("Response is invalid");
 				}
-				if (fromServer.charAt(0) == 'Y')
+				if (fromServer.charAt(0) == '1')
 				{
 					if (start.experimental)
 					{
@@ -95,7 +95,7 @@ public class serverCommsInterface
 					}
 				}
 
-				if (fromServer.charAt(0) == 'N')
+				if (fromServer.charAt(0) == '0')
 				{
 					if (start.experimental)
 					{
