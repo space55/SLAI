@@ -54,7 +54,6 @@ public class Logger
 		Calendar cal = Calendar.getInstance();
 		cal.getTime();
 		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
-		String time = sdf.format(cal.getTime());
 		return time;
 	}
 

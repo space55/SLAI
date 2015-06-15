@@ -55,6 +55,7 @@ public class Logger
 		cal.getTime();
 		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
 		String time = sdf.format(cal.getTime());
+		time = time + "." + System.currentTimeMillis() % 1000;
 		return time;
 	}
 
@@ -66,9 +67,9 @@ public class Logger
 			{
 				if (logfile)
 				{
-					out.println("[" + date() + " " + time() + "] " + msg);
+					out.println("[" + time() + "] " + msg);
 				}
-				System.out.println("[" + date() + " " + time() + "] " + msg);
+				System.out.println("[" + time() + "] " + msg);
 			}
 			else
 			{

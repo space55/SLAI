@@ -15,7 +15,6 @@ public class start
 	static boolean verbose;
 	static boolean timestamp;
 	static boolean experimental;
-	static boolean logfile;
 
 	public static void main(String[] args) throws IOException
 	{
@@ -35,14 +34,9 @@ public class start
 			{
 				experimental = true;
 			}
-			
-			if (args[argscounter].equalsIgnoreCase("logf"))
-			{
-				logfile = true;
-			}
 		}
 		
-		Logger.init(verbose, timestamp, logfile);
+		Logger.init(verbose, timestamp);
 
 		Logger.write("Verbose mode Initialized");
 		Logger.write("Timestamps Initialized");
@@ -195,7 +189,7 @@ public class start
 			}
 			else
 			{
-				Logger.write("Messup");
+				Logger.write("SERVER IS BROKEN, FIX IT BEFORE IT EXPLODES");
 			}
 		}
 		else if (type == 1)
