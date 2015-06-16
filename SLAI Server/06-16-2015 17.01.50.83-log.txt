@@ -1,0 +1,107 @@
+Starting logfile at 17:01:50.83[06-16-2015 17:01:50.83] Completed args reading
+[06-16-2015 17:03:29.633] From Client: @sure
+[06-16-2015 17:03:29.633] Loading driver...
+[06-16-2015 17:03:29.761] Driver loaded!
+[06-16-2015 17:03:29.761] Getting connection
+[06-16-2015 17:03:29.944] Connected to database
+[06-16-2015 17:03:29.945] executeCommand invoked
+[06-16-2015 17:03:29.945] stmt initialized & declared
+[06-16-2015 17:03:29.945] rs declared
+[06-16-2015 17:03:29.946] Query: SELECT yesno_validations FROM yesno_answers WHERE yesno_id = 'sure';
+[06-16-2015 17:03:29.976] Query executed
+[06-16-2015 17:03:29.976] Getting yesno_validations
+[06-16-2015 17:03:29.976] Creating rs, wR, & r strings
+[06-16-2015 17:03:29.977] rs: com.mysql.jdbc.JDBC4ResultSet@76dff374
+[06-16-2015 17:03:29.977] wR: yesno_validations
+[06-16-2015 17:03:29.977] rL: 1
+[06-16-2015 17:03:29.977] Closing connection
+[06-16-2015 17:03:29.978] Result of findData(): 1
+[06-16-2015 17:03:29.978] executeCommand invoked
+[06-16-2015 17:03:29.978] stmt initialized & declared
+[06-16-2015 17:03:29.978] rs declared
+[06-16-2015 17:03:29.979] Query: SELECT yesno_tf FROM yesno_answers WHERE yesno_id = 'sure';
+[06-16-2015 17:03:29.979] Query executed
+[06-16-2015 17:03:29.980] Getting yesno_tf
+[06-16-2015 17:03:29.980] Creating rs, wR, & r strings
+[06-16-2015 17:03:29.980] rs: com.mysql.jdbc.JDBC4ResultSet@78976bca
+[06-16-2015 17:03:29.981] wR: yesno_tf
+[06-16-2015 17:03:29.981] rL: 1
+[06-16-2015 17:03:29.981] Closing connection
+[06-16-2015 17:03:29.982] Result of findData(): 1
+[06-16-2015 17:03:29.982] Getting connection
+[06-16-2015 17:03:29.992] Connected to database
+[06-16-2015 17:03:29.992] executeUpdate invoked
+[06-16-2015 17:03:29.992] stmt initialized & declared
+[06-16-2015 17:03:29.992] executeCommand invoked
+[06-16-2015 17:03:29.993] stmt initialized & declared
+[06-16-2015 17:03:29.993] rs declared
+[06-16-2015 17:03:29.993] Query: SELECT yesno_validations FROM yesno_answers WHERE yesno_id = 'sure';
+[06-16-2015 17:03:29.994] Query executed
+[06-16-2015 17:03:29.994] Getting yesno_validations
+[06-16-2015 17:03:29.995] Creating rs, wR, & r strings
+[06-16-2015 17:03:29.995] rs: com.mysql.jdbc.JDBC4ResultSet@4db6ab2
+[06-16-2015 17:03:29.995] wR: yesno_validations
+[06-16-2015 17:03:29.995] rL: 1
+[06-16-2015 17:03:29.996] Closing connection
+[06-16-2015 17:03:29.996] Result of findData(): 1
+[06-16-2015 17:03:29.996] Update command: UPDATE yesno_answers SET yesno_validations='2' WHERE yesno_id='sure';
+[06-16-2015 17:03:30.24] Update executed
+[06-16-2015 17:03:30.25] Closing connection
+[06-16-2015 17:03:30.25] Output: 1\1\sure
+[06-16-2015 17:03:30.25] Sending: 1\1\sure
+[06-16-2015 17:03:30.25] Message sent
+[06-16-2015 17:03:30.26] Closing connections
+[06-16-2015 17:03:30.26] Connections closed
+[06-16-2015 17:04:42.294] From Client: @Sure
+[06-16-2015 17:04:42.294] Loading driver...
+[06-16-2015 17:04:42.295] Driver loaded!
+[06-16-2015 17:04:42.295] Getting connection
+[06-16-2015 17:04:42.335] Connected to database
+[06-16-2015 17:04:42.336] executeCommand invoked
+[06-16-2015 17:04:42.336] stmt initialized & declared
+[06-16-2015 17:04:42.336] rs declared
+[06-16-2015 17:04:42.336] Query: SELECT yesno_validations FROM yesno_answers WHERE yesno_id = 'Sure';
+[06-16-2015 17:04:42.337] Query executed
+[06-16-2015 17:04:42.337] Getting yesno_validations
+[06-16-2015 17:04:42.337] Creating rs, wR, & r strings
+[06-16-2015 17:04:42.337] rs: com.mysql.jdbc.JDBC4ResultSet@feada44
+[06-16-2015 17:04:42.338] wR: yesno_validations
+[06-16-2015 17:04:42.338] rL: 2
+[06-16-2015 17:04:42.338] Closing connection
+[06-16-2015 17:04:42.338] Result of findData(): 2
+[06-16-2015 17:04:42.339] executeCommand invoked
+[06-16-2015 17:04:42.339] stmt initialized & declared
+[06-16-2015 17:04:42.339] rs declared
+[06-16-2015 17:04:42.339] Query: SELECT yesno_tf FROM yesno_answers WHERE yesno_id = 'Sure';
+[06-16-2015 17:04:42.340] Query executed
+[06-16-2015 17:04:42.340] Getting yesno_tf
+[06-16-2015 17:04:42.341] Creating rs, wR, & r strings
+[06-16-2015 17:04:42.341] rs: com.mysql.jdbc.JDBC4ResultSet@687ae145
+[06-16-2015 17:04:42.341] wR: yesno_tf
+[06-16-2015 17:04:42.341] rL: 1
+[06-16-2015 17:04:42.342] Closing connection
+[06-16-2015 17:04:42.342] Result of findData(): 1
+[06-16-2015 17:04:42.342] Getting connection
+[06-16-2015 17:04:42.353] Connected to database
+[06-16-2015 17:04:42.353] executeUpdate invoked
+[06-16-2015 17:04:42.354] stmt initialized & declared
+[06-16-2015 17:04:42.354] executeCommand invoked
+[06-16-2015 17:04:42.354] stmt initialized & declared
+[06-16-2015 17:04:42.354] rs declared
+[06-16-2015 17:04:42.355] Query: SELECT yesno_validations FROM yesno_answers WHERE yesno_id = 'Sure';
+[06-16-2015 17:04:42.355] Query executed
+[06-16-2015 17:04:42.355] Getting yesno_validations
+[06-16-2015 17:04:42.356] Creating rs, wR, & r strings
+[06-16-2015 17:04:42.356] rs: com.mysql.jdbc.JDBC4ResultSet@37fff962
+[06-16-2015 17:04:42.356] wR: yesno_validations
+[06-16-2015 17:04:42.357] rL: 2
+[06-16-2015 17:04:42.357] Closing connection
+[06-16-2015 17:04:42.357] Result of findData(): 2
+[06-16-2015 17:04:42.357] Update command: UPDATE yesno_answers SET yesno_validations='3' WHERE yesno_id='Sure';
+[06-16-2015 17:04:42.360] Update executed
+[06-16-2015 17:04:42.360] Closing connection
+[06-16-2015 17:04:42.360] Output: 1\2\Sure
+[06-16-2015 17:04:42.361] Sending: 1\2\Sure
+[06-16-2015 17:04:42.361] Message sent
+[06-16-2015 17:04:42.361] Closing connections
+[06-16-2015 17:04:42.362] Connections closed

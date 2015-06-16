@@ -12,7 +12,7 @@ import main.Start;
 public class ServerCommsInterface
 {
 	private static final int port = 1635;
-	private static final String HostName = "68.195.9.167";
+	private static final String HostName = "localhost";
 
 	public static int sCI(String word, int newText) throws IOException
 	{

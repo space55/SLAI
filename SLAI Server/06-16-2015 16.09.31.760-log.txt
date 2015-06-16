@@ -1,0 +1,1 @@
+Starting logfile at 16:09:31.761[06-16-2015 16:09:31.761] Completed args reading

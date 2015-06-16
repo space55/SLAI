@@ -5,4 +5,8 @@
 <fullyQualifiedTypeName name="calc.ynAnswer"/>
 <fullyQualifiedTypeName name="main.quit"/>
 <fullyQualifiedTypeName name="calc.checkQuitInput"/>
+<fullyQualifiedTypeName name="data.dataStorage"/>
+<fullyQualifiedTypeName name="calc.YNAnswer"/>
+<fullyQualifiedTypeName name="games.Main"/>
+<fullyQualifiedTypeName name="comInterface.Communication"/>
 </qualifiedTypeNameHistroy>

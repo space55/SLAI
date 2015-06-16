@@ -16,6 +16,7 @@ public class Communication {
 		@SuppressWarnings("resource")
 		Scanner in = new Scanner(System.in);
 		String ret = in.next();
+		ret.toLowerCase();
 		checkQuit.run(ret);
 		return ret;
 	}

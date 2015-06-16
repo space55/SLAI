@@ -18,6 +18,7 @@ public class server
 			{
 				// Logger.verbose = true;
 			}
+			
 
 			if (args[argscounter].equalsIgnoreCase("tlog"))
 			{
