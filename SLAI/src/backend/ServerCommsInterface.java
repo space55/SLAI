@@ -12,6 +12,7 @@ import main.Start;
 public class ServerCommsInterface
 {
 	private static final int port = 1635;
+	private static final String HostName = "68.195.9.167";
 
 	public static int sCI(String word, int newText) throws IOException
 	{
@@ -25,7 +26,7 @@ public class ServerCommsInterface
 		 * }
 		 */
 
-		String hostName = "localhost";
+		String hostName = HostName;
 		int portNumber = port;
 
 		try (Socket clSocket = new Socket(hostName, portNumber); PrintWriter out = new PrintWriter(clSocket.getOutputStream(), true); BufferedReader in = new BufferedReader(new InputStreamReader(clSocket.getInputStream()));)
