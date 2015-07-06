@@ -1,7 +1,9 @@
 package games;
 
+import java.io.IOException;
+
 public class Main {
-	public void play(String game)
+	public void play(String game) throws IOException
 	{
 		if (game.equals("programGuessBirthday"))
 		{

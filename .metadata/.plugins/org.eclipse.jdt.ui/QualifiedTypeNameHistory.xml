@@ -9,4 +9,5 @@
 <fullyQualifiedTypeName name="calc.YNAnswer"/>
 <fullyQualifiedTypeName name="games.Main"/>
 <fullyQualifiedTypeName name="comInterface.Communication"/>
+<fullyQualifiedTypeName name="java.util.Random"/>
 </qualifiedTypeNameHistroy>
