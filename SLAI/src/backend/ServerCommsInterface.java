@@ -18,14 +18,6 @@ public class ServerCommsInterface
 	{
 		int ret = 0;
 
-		/*
-		 * if (args.length != 1)
-		 * {
-		 * System.err.println("Usage: java kkClient <host name> <port number>");
-		 * System.exit(1);
-		 * }
-		 */
-
 		String hostName = HostName;
 		int portNumber = port;
 
