@@ -1,0 +1,5 @@
+Starting logfile at 13:05:47.43[07-06-2015 13:05:47.43] Completed args reading
+[07-06-2015 13:05:58.886] From Client: @Sure
+[07-06-2015 13:05:58.888] Loading driver...
+[07-06-2015 13:05:59.32] Driver loaded!
+[07-06-2015 13:05:59.33] Getting connection

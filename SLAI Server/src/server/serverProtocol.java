@@ -27,7 +27,7 @@ public class serverProtocol
 		{
 			throw new RuntimeException("Cannot find the driver in the classpath!", e);
 		}
-		
+
 		if (type == '*')
 		{
 			createRow(input, 1, true, getConnection());
@@ -41,7 +41,7 @@ public class serverProtocol
 		else if (type == '@')
 		{
 			String data = findData(input, getConnection());
-			
+
 			if (data.indexOf("#") != -1)
 			{
 				output = "%";
@@ -55,7 +55,7 @@ public class serverProtocol
 		Logger.write("Output: " + output);
 		return output;
 	}
-	
+
 	public static void executeUpdate(String id, Connection con) throws SQLException
 	{
 		executeUpdate(id, con, 1);
@@ -135,7 +135,7 @@ public class serverProtocol
 			}
 		}
 	}
-	
+
 	public static String findData(String id, Connection con) throws SQLException
 	{
 		String validations = findData(id, con, "yesno_validations");
@@ -157,7 +157,7 @@ public class serverProtocol
 			Logger.write("stmt initialized & declared");
 			ResultSet rs;
 			Logger.write("rs declared");
-			String query = "SELECT " + wantedResult + " FROM yesno_answers WHERE yesno_id = \'"+ id +"\';";
+			String query = "SELECT " + wantedResult + " FROM yesno_answers WHERE yesno_id = \'" + id + "\';";
 			Logger.write("Query: " + query);
 			rs = stmt.executeQuery(query);
 			Logger.write("Query executed");
